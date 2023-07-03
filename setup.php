@@ -24,7 +24,7 @@
  * -------------------------------------------------------------------------
  * @copyright Copyright (C) 2023 by Dimitri Mestdagh.
  * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
- * @link      https://github.com/dim00z/reservationinfo
+ * @link      https://github.com/dim00z/ReservationInfo
  * -------------------------------------------------------------------------
  */
 
@@ -39,14 +39,14 @@ define('PLUGIN_RESERVATIONINFO_MIN_GLPI', '10.0.0');
 define('PLUGIN_RESERVATIONINFO_MAX_GLPI', '10.0.99');
 
 if (!defined("PLUGIN_RESERVATIONINFO_DIR")) {
-    define("PLUGIN_RESERVATIONINFO_DIR", Plugin::getPhpDir("reservationinfo"));
+    define("PLUGIN_RESERVATIONINFO_DIR", Plugin::getPhpDir("ReservationInfo"));
 }
 if (!defined("PLUGIN_RESERVATIONINFO_WEB_DIR")) {
-    define("PLUGIN_RESERVATIONINFO_WEB_DIR", Plugin::getWebDir("reservationinfo"));
+    define("PLUGIN_RESERVATIONINFO_WEB_DIR", Plugin::getWebDir("ReservationInfo"));
 }
 
 if (!defined("PLUGIN_RESERVATIONINFO_DOC_DIR")) {
-    define("PLUGIN_RESERVATIONINFO_DOC_DIR", GLPI_PLUGIN_DOC_DIR . "/reservationinfo");
+    define("PLUGIN_RESERVATIONINFO_DOC_DIR", GLPI_PLUGIN_DOC_DIR . "/ReservationInfo");
 }
 if (!file_exists(PLUGIN_RESERVATIONINFO_DOC_DIR)) {
     mkdir(PLUGIN_RESERVATIONINFO_DOC_DIR);
@@ -71,7 +71,7 @@ if (!file_exists(PLUGIN_RESERVATIONINFO_FRONT_PATH)) {
  */
 function plugin_version_reservationinfo() {
 	return [
-		'name'           => __("Reservation Info", "reservationinfo"),
+		'name'           => __("Reservation Info", "ReservationInfo"),
 		'version'        => PLUGIN_RESERVATIONINFO_VERSION,
 		'author'         => 'Dimitri Mestdagh',
 		'license'        => 'GPLv3.0',
@@ -99,7 +99,7 @@ function plugin_reservationinfo_check_prerequisites() {
  
     // Check that GLPI version is compatible:
     if (version_compare(GLPI_VERSION, '10.0.0', 'lt') || version_compare(GLPI_VERSION, '10.0.7', 'gt')) {
-        echo __('This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.8', 'reservationinfo');
+        echo __('This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.8', 'ReservationInfo');
         return false;
     }
  
@@ -115,11 +115,11 @@ function plugin_init_reservationinfo() {
    
 	global $PLUGIN_HOOKS,$CFG_GLPI;
 	
-	$PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['reservationinfo'] = true;
+	$PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['ReservationInfo'] = true;
 	
 	// Add plugin config page:
 	if (Session::haveRight('config', UPDATE)) {
-		$PLUGIN_HOOKS['config_page']['reservationinfo'] = 'front/config.form.php';
+		$PLUGIN_HOOKS['config_page']['ReservationInfo'] = 'front/config.form.php';
 	}
 	
 	// Load plugin custom class:
