@@ -75,7 +75,7 @@ function plugin_version_reservationinfo() {
 		'version'        => PLUGIN_RESERVATIONINFO_VERSION,
 		'author'         => 'Dimitri Mestdagh',
 		'license'        => 'GPLv3.0',
-		'homepage'       => 'https://github.com/dim00z/reservationinfo',
+		'homepage'       => 'https://github.com/dim00z/ReservationInfo',
 		'requirements'   => [
 			'glpi' => [
 				'min' => PLUGIN_RESERVATIONINFO_MIN_GLPI,
