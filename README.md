@@ -4,7 +4,7 @@ Download the plugin here : https://github.com/dim00z/ReservationInfo/raw/main/mi
 
 ## Introduction
 
-The Reservation Info plugin show the current reservation status in lists of items.
+The Reservation Info plugin show the current reservation status in lists of items. It works with all types of bookable items: computers, monitors, software, network devices, devices, printers and phones.
 
 ## Screenshots
 
