@@ -24,7 +24,7 @@ All its database tables and additionnal files are removed when uninstalling the 
 
 ## Installation
 
-To install the plugin, unzip the files in the following directory:
+To install the plugin, unzip files in the following directory:
 'glpi/plugins/ReservationInfo/'
 then install/enable it from the Setup/plugin panel.
 
