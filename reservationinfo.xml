@@ -1,0 +1,62 @@
+<root>
+   <name>Reservation Info</name>
+   <key>reservationinfo</key>
+   <state>stable</state>
+   <logo>https://raw.githubusercontent.com/dim00z/reservationinfo/main/reservationinfo_icon.png</logo>
+   <description>
+      <short>
+         <en>This plugin allows to show current bookings in lists of items.</en>
+         <es>Este plugin permite mostrar el estado de las reservas en las listas de elementos.</es>
+         <fr>Le plugin "Info Réservations" permet d'afficher l'état des réservations dans les listes d'éléments.</fr>
+      </short>
+      <long>
+         <en>
+The "Reservation Info" plugin allows to show current reservation status in lists of bookable items.
+         </en>
+         <es>
+El plugin "Información de reservas" permite mostrar el estado de las reservas en las listas de elementos.
+         </es>
+         <fr>
+Le plugin "Info Réservations" permet d'afficher l'état des réservations dans les listes d'éléments.
+         </fr>
+      </long>
+   </description>
+   <homepage>https://github.com/dim00z/reservationinfo</homepage>
+   <download>https://github.com/dim00z/reservationinfo/raw/main/files/reservationinfo.zip</download>
+   <issues>https://github.com/dim00z/reservationinfo/issues</issues>
+   <readme>https://raw.githubusercontent.com/dim00z/reservationinfo/main/README.md</readme>
+   <authors>
+      <author>Dimitri Mestdagh</author>
+   </authors>
+   <versions>
+      <version>
+         <num>0.0.1</num>
+         <compatibility>~10.0.0</compatibility>
+         <download_url>https://github.com/dim00z/reservationinfo/raw/main/files/reservationinfo.zip</download_url>
+      </version>
+   </versions>
+   <langs>
+      <lang>en_GB</lang>
+      <lang>es_ES</lang>
+      <lang>fr_FR</lang>
+   </langs>
+   <license>GPLv3.0</license>
+   <tags>
+      <en>
+         <tag>Booking</tag>
+         <tag>Info</tag>
+      </en>
+      <es>
+         <tag>Reservas</tag>
+         <tag>Info</tag>
+      </es>
+      <fr>
+         <tag>Réservations</tag>
+         <tag>Info</tag>
+      </fr>
+   </tags>
+   <screenshots>
+      <screenshot></screenshot>
+      <screenshot></screenshot>
+   </screenshots>
+</root>
