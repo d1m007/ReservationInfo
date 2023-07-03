@@ -20,7 +20,7 @@ It is distributed under the GNU GENERAL PUBLIC LICENSE Version 3 - please consul
 ## Documentation
 
 The Reservation Info plugin show the current reservation status in the lists of items.
-This plugin is compatible with GLPI 10.0.0 => 10.0.7. Translations available in en_EN, fr_FR, es_ES. Up to you to add more.
+This plugin is compatible with GLPI 10.0.0 => 10.0.7. Translations available in en_EN, fr_FR, es_ES. It's up to you to add more.
 
 All its database tables and additionnal files are removed when uninstalling the plugin.
 
