@@ -25,7 +25,7 @@
  * -------------------------------------------------------------------------
  * @copyright Copyright (C) 2023 by Dimitri Mestdagh.
  * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
- * @link      https://github.com/dim00z/reservationinfo
+ * @link      https://github.com/dim00z/ReservationInfo
  * -------------------------------------------------------------------------
  */
 
@@ -35,9 +35,9 @@ include ("../../../inc/includes.php");
 Session::checkRight("config", UPDATE);
 
 // To be available when plugin in not activated:
-Plugin::load('reservationinfo');
+Plugin::load('ReservationInfo');
 
-Html::header(__('Plugin Reservation Info - Configuration', 'reservationinfo'), $_SERVER['PHP_SELF'], "config", "plugins");
+Html::header(__('Plugin Reservation Info - Configuration', 'ReservationInfo'), $_SERVER['PHP_SELF'], "config", "plugins");
 
 // Get available profiles in GLPI config :
 $ri = new PluginReservationInfo;
@@ -48,10 +48,10 @@ $out .= ("<table>\n<tbody>\n");
 $out .= ("<form action='./saveconfig.php' method='post'>\n");
 $out .= ("	" . Html::hidden('_glpi_csrf_token', array('value' => Session::getNewCSRFToken())));
 $out .= ("\n");
-$out .= ("	<tr><th colspan=\"2\" style=\"font-size:16px; padding-bottom:10px\">" . __("Plugin Reservation Info - Configuration", 'reservationinfo') . "</th></tr>\n");
+$out .= ("	<tr><th colspan=\"2\" style=\"font-size:16px; padding-bottom:10px\">" . __("Plugin Reservation Info - Configuration", 'ReservationInfo') . "</th></tr>\n");
 $out .= ("<fieldset>\n");
 $out .= ("\n");
-$out .= ("	<tr><td colspan=\"2\" style=\"padding:20px;\">" . __("Select item types for which to display booking information", 'reservationinfo') . ":</td></tr>\n");
+$out .= ("	<tr><td colspan=\"2\" style=\"padding:20px;\">" . __("Select item types for which to display booking information", 'ReservationInfo') . ":</td></tr>\n");
 $out .= ("	<tr><td colspan=\"2\" style=\"padding-left:40px;\">");
 $out .= ("		<input type=\"checkbox\" id=\"Computer\" name=\"Computer\" value=\"1\"");
 if($ri->getPluginSetting("Computer") == 1) $out .= "checked";
@@ -94,14 +94,14 @@ if($ri->getPluginSetting("Phone") == 1) $out .= "checked";
 $out .= ">\n";
 $out .= ("		<label for=\"Phone\">"._n("Phone", "Phones", 2)."</label>");
 $out .= ("	</td></tr>\n");
-$out .= ("	<tr><td colspan=\"2\" style=\"padding-top:20px;padding-left:20px;padding-bottom:10px;\">" . __("Optional", "reservationinfo") . ":</td></tr>\n");
+$out .= ("	<tr><td colspan=\"2\" style=\"padding-top:20px;padding-left:20px;padding-bottom:10px;\">" . __("Optional", "ReservationInfo") . ":</td></tr>\n");
 $out .= ("	<tr><td colspan=\"2\" style=\"padding-left:40px;\">");
 $out .= ("		<input type=\"checkbox\" id=\"Update_items_users\" name=\"Update_items_users\" value=\"1\"");
 if($ri->getPluginSetting("Update_items_users") == 1) $out .= "checked";
 $out .= ">\n";
-$out .= ("		<label for=\"Update_items_users\">".__("Automatically update items' users with bookers IDs", "reservationinfo")."</label>");
+$out .= ("		<label for=\"Update_items_users\">".__("Automatically update items' users with bookers IDs", "ReservationInfo")."</label>");
 $out .= ("	</td></tr>\n");
-$out .= ("	<tr><td colspan=\"2\" style=\"padding-top: 20px;padding-left: 60px; \"><input type=\"submit\" class=\"submit\" value=\"" . __('Save', 'reservationinfo') . "\" name=\"save\"/></td>\n");
+$out .= ("	<tr><td colspan=\"2\" style=\"padding-top: 20px;padding-left: 60px; \"><input type=\"submit\" class=\"submit\" value=\"" . __('Save', 'ReservationInfo') . "\" name=\"save\"/></td>\n");
 $out .= ("</fieldset>\n</form>\n</tbody>\n</table>\n</div>\n");
 
 echo($out);
