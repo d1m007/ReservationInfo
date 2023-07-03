@@ -1,6 +1,6 @@
 # GLPi Reservation Info Plugin
 
-Download the plugin here : https://github.com/dim00z/ReservationInfo/raw/main/misc/reservationinfo.zip
+Download the plugin here : https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfo.zip
 
 ## Introduction
 
