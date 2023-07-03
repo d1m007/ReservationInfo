@@ -4,16 +4,16 @@ Download the plugin here : https://github.com/dim00z/reservationinfo/raw/main/fi
 
 ## Introduction
 
-The Reservation Info plugin show the current reservation status in the lists of items.
+The Reservation Info plugin show the current reservation status in lists of items.
 
 ## Screenshots
 
-![Screenshot](./docs/xxxxxxxxx.png)
-![Screenshot](./docs/yyyyyyyyy.png)
+![Screenshot](./misc/xxxxxxxxx.png)
+![Screenshot](./misc/yyyyyyyyy.png)
 
 ## License
 
-![license](./docs/GPLv3.0.svg)
+![license](./misc/GPLv3.0.svg)
 
 It is distributed under the GNU GENERAL PUBLIC LICENSE Version 3 - please consult the file called [LICENSE](https://raw.githubusercontent.com/dim00z/reservationinfo/main/LICENSE) for more details.
 
