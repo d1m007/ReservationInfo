@@ -1,0 +1,84 @@
+# en_GB translations for the ReservationInfo plugin.
+# Copyright (C) 2023 Dimitri Mestdagh
+# This file is distributed under the same license as the ReservationInfo plugin.
+# 
+# Translator:
+# Dimitri Mestdagh, 2023
+
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Plugin - ReservationInfo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-26 17:47+0000\n"
+"PO-Revision-Date: 2023-06-26 21:24+0000\n"
+"Last-Translator: Dimitri Mestdagh, 2023\n"
+"Language-Team: French (France)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: front/reservationinfo.class.php
+msgid "Reservation Status"
+msgstr "Booking status"
+
+#: front/reservationinfo.class.php
+msgid "Reservation User"
+msgstr "Booked by"
+
+#: front/reservationinfo.class.php
+msgid "Reservation Begin"
+msgstr "Booking begin"
+
+#: front/reservationinfo.class.php
+msgid "Reservation End"
+msgstr "Booking end"
+
+#: front/reservationinfo.class.php
+msgid "Reservation Comment"
+msgstr "Booking comment"
+
+#: front/reservationinfo.class.php
+msgid "Not_bookable"
+msgstr "Not bookable"
+
+#: front/reservationinfo.class.php
+msgid "Not_available"
+msgstr "Not available"
+
+#: front/reservationinfo.class.php
+msgid "Available"
+msgstr "Available"
+
+#: front/config.form.php
+msgid "Plugin Reservation Info - Configuration"
+msgstr "Plugin Reservation Info - Configuration"
+
+#: front/config.form.php
+msgid "Select item types for which to display booking information"
+msgstr "Select item types for which to display booking information"
+
+#: front/reservationinfo.class.php
+msgid "Booked"
+msgstr "Booked"
+
+#: front/config.form.php
+msgid "Optional"
+msgstr "Optional"
+
+#: front/config.form.php
+msgid "Automatically update items' users with bookers IDs"
+msgstr "Automatically update items' users with bookers IDs"
+
+#: front/config.form.php
+msgid "Save"
+msgstr "Save"
+
+#: setup.php
+msgid "This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.8"
+msgstr "This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.8"
+
+#: setup.php
+msgid "Reservation Info"
+msgstr "Reservation Info"
