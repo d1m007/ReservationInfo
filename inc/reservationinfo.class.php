@@ -24,7 +24,7 @@
  * -------------------------------------------------------------------------
  * @copyright Copyright (C) 2023 by Dimitri Mestdagh.
  * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
- * @link      https://github.com/dim00z/reservationinfo
+ * @link      https://github.com/dim00z/ReservationInfo
  * -------------------------------------------------------------------------
  */
 
@@ -32,9 +32,9 @@ class PluginReservationInfo extends CommonGLPI
 {
 
 	/**
-     * This function is called to create required tables
-	 *  in the GLPI database
-     */
+	* This function is called to create required tables
+	*  in the GLPI database
+	*/
 	public function createPluginDB(){
 		
 		// Table to store reservations info:
@@ -79,9 +79,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 	
 	/**
-     * This function is called to drop plugin tables
-	 *  from the GLPI database
-     */
+	* This function is called to drop plugin tables
+	*  from the GLPI database
+	*/
 	public function dropPluginDB(){
 		
 		// Drop plugin tables:
@@ -98,9 +98,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 
 	/**
-    * Function to update a row in the database or insert a new one
-    *
-    */
+	* Function to update a row in the database or insert a new one
+	*
+	*/
 	public function updateOrInsert($table, $fields, $values, $where) {
 
 		$DB = new DB;
@@ -130,9 +130,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 
 	/**
-     * This function is called to add reservation info fields
-	 *  in available fields to display on items listing pages
-     */
+	* This function is called to add reservation info fields
+	*  in available fields to display on items listing pages
+	*/
 	public function getAddSearchOptions($itemtype)
 	{
 
@@ -141,7 +141,7 @@ class PluginReservationInfo extends CommonGLPI
 			array (
 				'table' => 'glpi_plugin_reservationinfo',
 				'field' => 'status',
-				'name' => __('Reservation Status', 'reservationinfo'),
+				'name' => __('Reservation Status', 'ReservationInfo'),
 				'joinparams' => 
 				array (
 				'jointype' => 'itemtype_item',
@@ -152,7 +152,7 @@ class PluginReservationInfo extends CommonGLPI
 			array (
 				'table' => 'glpi_users',
 				'field' => 'name',
-				'name' =>  __('Reservation User', 'reservationinfo'),
+				'name' =>  __('Reservation User', 'ReservationInfo'),
 				'joinparams' => 
 				array (
 				'jointype' => '',
@@ -171,7 +171,7 @@ class PluginReservationInfo extends CommonGLPI
 			array (
 				'table' => 'glpi_plugin_reservationinfo',
 				'field' => 'begin',
-				'name' => __('Reservation Begin', 'reservationinfo'),
+				'name' => __('Reservation Begin', 'ReservationInfo'),
 				'joinparams' => 
 				array (
 				'jointype' => 'itemtype_item',
@@ -182,7 +182,7 @@ class PluginReservationInfo extends CommonGLPI
 			array (
 				'table' => 'glpi_plugin_reservationinfo',
 				'field' => 'end',
-				'name' => __('Reservation End', 'reservationinfo'),
+				'name' => __('Reservation End', 'ReservationInfo'),
 				'joinparams' => 
 				array (
 				'jointype' => 'itemtype_item',
@@ -193,7 +193,7 @@ class PluginReservationInfo extends CommonGLPI
 			array (
 				'table' => 'glpi_plugin_reservationinfo',
 				'field' => 'comment',
-				'name' => __('Reservation Comment', 'reservationinfo'),
+				'name' => __('Reservation Comment', 'ReservationInfo'),
 				'joinparams' => 
 				array (
 				'jointype' => 'itemtype_item',
@@ -208,8 +208,8 @@ class PluginReservationInfo extends CommonGLPI
 	}
 
 	/**
-     * This function is called to get plugin config from DB
-     */
+	* This function is called to get plugin config from DB
+	*/
 	function getPluginSetting($setting){
 		
 		$DB = new DB;		
@@ -223,9 +223,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 	
 	/**
-     * This function is called to save plugin configuration
-     * 
-     */
+	* This function is called to save plugin configuration
+	* 
+	*/
 	function savePluginConfig($setting, $value){
 		
 		$DB = new DB;
@@ -242,9 +242,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 
 	/**
-     * This function is called to get list of all possible bookable item types
-     * 
-     */
+	* This function is called to get list of all possible bookable item types
+	* 
+	*/
 	public static function getAllItemTypes()
     {
 
@@ -253,9 +253,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 	
 	/**
-     * This function is called to get list of item types selected to display info
-     * 
-     */
+	* This function is called to get list of item types selected to display info
+	* 
+	*/
 	public static function getActiveItemTypes()
     {
 		
@@ -288,9 +288,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 	
 	/**
-     * This function is used to get item from reservation itemId
-     *  
-     */
+	* This function is used to get item from reservation itemId
+	*  
+	*/
 	private function getItemFromReservationItemId($item_type, $reservationitem_id){
 
 		$DB = new DB;		
@@ -304,9 +304,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 
 	/**
-     * This function is used to set item reservation info
-     *  
-     */	
+	* This function is used to set item reservation info
+	*  
+	*/	
 	private function setItemReservationInfo($item_type, $item_id, $user_id, $status, $begin, $end, $comment){
 		 
 		$DB = new DB;
@@ -332,9 +332,9 @@ class PluginReservationInfo extends CommonGLPI
 	}
 
 	/**
-     * This function is used to updat reservation info for each item
-     *  
-     */	
+	* This function is used to updat reservation info for each item
+	*  
+	*/	
 	public function updateReservationInfoForEachItem($item_type){
 		
 		$DB = new DB;
@@ -348,7 +348,7 @@ class PluginReservationInfo extends CommonGLPI
 			$query_bookable_item = "SELECT `items_id` FROM `" . $table . "` WHERE `" . $table . "`.`itemtype`='" . $item_type . "' AND  `" . $table . "`.`items_id`='" . $item['id'] . "';";
 			$bookable_items = $DB->query($query_bookable_item) or die($DB->error());
 			if(mysqli_num_rows($bookable_items) == 0){
-				$booking_status = __('Not_bookable', 'reservationinfo');
+				$booking_status = __('Not_bookable', 'ReservationInfo');
 				self::setItemReservationInfo($item_type, $item['id'], 0, $booking_status, "", "", "");
 			}
 		}
@@ -371,7 +371,7 @@ class PluginReservationInfo extends CommonGLPI
 			$result_active_booking = $DB->query($query_active_booking) or die($DB->error());
 			$item_active = $result_active_booking->fetch_assoc();
 			$item_active = $item_active['is_active'];
-			$booking_status = __('Not_available', 'reservationinfo');	// default value
+			$booking_status = __('Not_available', 'ReservationInfo');	// default value
 			
 			// Check if item is currently booked:
 			$query_curr_booking = "SELECT * FROM `glpi_reservations` WHERE `reservationitems_id`=".$reservationitem['id']." AND (`begin`<NOW() AND `end`>NOW());";
@@ -383,7 +383,7 @@ class PluginReservationInfo extends CommonGLPI
 				
 				// For each currently booked item:
 				$booking = $result_curr_booking->fetch_assoc();			
-				if($item_active == 1) $booking_status = __('Booked', 'reservationinfo');
+				if($item_active == 1) $booking_status = __('Booked', 'ReservationInfo');
 				
 				// Update item user and booking information tables:
 				self::setItemReservationInfo($reservationitem['itemtype'], $item['id'], $booking['users_id'], $booking_status, $booking['begin'], $booking['end'], addslashes($booking['comment']));
@@ -393,7 +393,7 @@ class PluginReservationInfo extends CommonGLPI
 			else {
 				
 				// Update item status (empty 'User' and 'Comment' fields for this item):
-				if($item_active == 1) $booking_status = __('Available', 'reservationinfo');
+				if($item_active == 1) $booking_status = __('Available', 'ReservationInfo');
 				self::setItemReservationInfo($reservationitem['itemtype'], $item['id'], 0, $booking_status, "", "", "");
 				
 			}
@@ -402,31 +402,6 @@ class PluginReservationInfo extends CommonGLPI
 		
 		return true;
 		
-	}
-
-	/**
-     * function to display var info in alert box
-     */
-	public function alert($msg){
-
-		echo('<script type="text/javascript">alert("'.$msg.'");</script>');
-		return;
-		
-	}
-	
-	/**
-     * function to display var info on page (debug purposes)
-     */
-	public function echo_msg($msg){
-
-		/* $ret = "";
-		if(is_array($msg)) {
-			$ret = ;
-		} */
-		echo($msg . " <br/>\n");
-		//var_export($msg);
-		return;
-	
 	}
 	
 }
