@@ -1,8 +1,8 @@
 <root>
    <name>Reservation Info</name>
-   <key>reservationinfo</key>
+   <key>ReservationInfo</key>
    <state>stable</state>
-   <logo>https://raw.githubusercontent.com/dim00z/reservationinfo/main/reservationinfo_icon.png</logo>
+   <logo>https://raw.githubusercontent.com/dim00z/ReservationInfo/main/reservationinfo_icon.png</logo>
    <description>
       <short>
          <en>This plugin allows to show current bookings in lists of items.</en>
@@ -21,10 +21,10 @@ Le plugin "Info Réservations" permet d'afficher l'état des réservations dans 
          </fr>
       </long>
    </description>
-   <homepage>https://github.com/dim00z/reservationinfo</homepage>
-   <download>https://github.com/dim00z/reservationinfo/raw/main/files/reservationinfo.zip</download>
-   <issues>https://github.com/dim00z/reservationinfo/issues</issues>
-   <readme>https://raw.githubusercontent.com/dim00z/reservationinfo/main/README.md</readme>
+   <homepage>https://github.com/dim00z/ReservationInfo</homepage>
+   <download>https://github.com/dim00z/ReservationInfo/raw/main/misc/reservationinfo.zip</download>
+   <issues>https://github.com/dim00z/ReservationInfo/issues</issues>
+   <readme>https://raw.githubusercontent.com/dim00z/ReservationInfo/main/README.md</readme>
    <authors>
       <author>Dimitri Mestdagh</author>
    </authors>
@@ -32,7 +32,7 @@ Le plugin "Info Réservations" permet d'afficher l'état des réservations dans 
       <version>
          <num>0.0.1</num>
          <compatibility>~10.0.0</compatibility>
-         <download_url>https://github.com/dim00z/reservationinfo/raw/main/files/reservationinfo.zip</download_url>
+         <download_url>https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfo.zip</download_url>
       </version>
    </versions>
    <langs>
