@@ -8,8 +8,8 @@ The Reservation Info plugin show the current reservation status in lists of item
 
 ## Screenshots
 
-![Screenshot](./misc/xxxxxxxxx.png)
-![Screenshot](./misc/yyyyyyyyy.png)
+![Screenshot](./misc/ReservationInfo_Config.png)
+![Screenshot](./misc/ReservationInfo_NetworkDevices.png)
 
 ## License
 
