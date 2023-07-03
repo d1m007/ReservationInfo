@@ -6,18 +6,18 @@
    <description>
       <short>
          <en>This plugin allows to show current bookings in lists of items.</en>
-         <es>Este plugin permite mostrar el estado de las reservas en las listas de elementos.</es>
-         <fr>Le plugin "Info Réservations" permet d'afficher l'état des réservations dans les listes d'éléments.</fr>
+         <es>Este plugin permite mostrar el estado actuel de las reservas en las listas de elementos.</es>
+         <fr>Le plugin "Info Réservations" permet d'afficher l'état actuel des réservations dans les listes d'éléments.</fr>
       </short>
       <long>
          <en>
-The "Reservation Info" plugin allows to show current reservation status in lists of bookable items.
+The "Reservation Info" plugin allows to show the current status of bookings in lists of items. Works with all types of bookable items: computers, monitors, software, network devices, devices, printers and phones.
          </en>
          <es>
-El plugin "Información de reservas" permite mostrar el estado de las reservas en las listas de elementos.
+El plugin "Información de reservas" permite mostrar el estado actual de las reservas en las listas de elementos. Funciona para todo tipo de elementos reservables: ordenadores, monitores, software, dispositivos de red, dispositivos, impresoras y teléfonos.
          </es>
          <fr>
-Le plugin "Info Réservations" permet d'afficher l'état des réservations dans les listes d'éléments.
+Le plugin "Info Réservations" permet d'afficher l'état actuel des réservations dans les listes d'éléments. Le plugin fonctionne pour tous les types d'éléments réservables : ordinateurs, moniteurs, logiciels, matériels réseau, périphériques, imprimantes et téléphones.
          </fr>
       </long>
    </description>
@@ -56,7 +56,7 @@ Le plugin "Info Réservations" permet d'afficher l'état des réservations dans 
       </fr>
    </tags>
    <screenshots>
-      <screenshot></screenshot>
-      <screenshot></screenshot>
+      <screenshot>https://raw.githubusercontent.com/dim00z/ReservationInfo/main/misc/ReservationInfo_Config.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/dim00z/ReservationInfo/main/misc/ReservationInfo_NetworkDevices.png</screenshot>
    </screenshots>
 </root>
