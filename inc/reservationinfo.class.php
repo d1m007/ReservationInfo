@@ -125,7 +125,7 @@ class PluginReservationInfo extends CommonGLPI
 			$query = $query . implode(",", $query_args) . " WHERE " . $where . ";";
 		}
 		$result = $DB->query($query) or die($DB->error());
-		
+		//self::alert("Query : " . $query);
 		return;
 	}
 
@@ -144,7 +144,7 @@ class PluginReservationInfo extends CommonGLPI
 				'name' => __('Reservation Status', 'ReservationInfo'),
 				'joinparams' => 
 				array (
-				'jointype' => 'itemtype_item',
+					'jointype' => 'itemtype_item',
 				),
 				'datatype' => 'string',
 			),
@@ -155,15 +155,15 @@ class PluginReservationInfo extends CommonGLPI
 				'name' =>  __('Reservation User', 'ReservationInfo'),
 				'joinparams' => 
 				array (
-				'jointype' => '',
-				'beforejoin' => 
-				array (
-					'table' => 'glpi_plugin_reservationinfo',
-					'joinparams' => 
+					'jointype' => '',
+					'beforejoin' => 
 					array (
-					'jointype' => 'itemtype_item',
+						'table' => 'glpi_plugin_reservationinfo',
+						'joinparams' => 
+						array (
+						'jointype' => 'itemtype_item',
+						),
 					),
-				),
 				),
 				'datatype' => 'dropdown',
 			),
@@ -199,7 +199,7 @@ class PluginReservationInfo extends CommonGLPI
 				'jointype' => 'itemtype_item',
 				),
 				'datatype' => 'text',
-			)
+			) 
 			
 		);
 
@@ -307,13 +307,13 @@ class PluginReservationInfo extends CommonGLPI
 	* This function is used to set item reservation info
 	*  
 	*/	
-	private function setItemReservationInfo($item_type, $item_id, $user_id, $status, $begin, $end, $comment){
+	private function setItemReservationInfo($item_type, $item_id, $user_id, $status, $begin, $end, $comment, $upd_user=0){
 		 
 		$DB = new DB;
 		
 		// Set booking user as item user in item table ("Computer", "Monitor", ...):
 		// (only if config option is selected)
-		if(self::getPluginSetting("Update_items_users") == 1) {
+		if($upd_user) {
 			$table = "glpi_".strtolower($item_type)."s";
 			$query = "UPDATE `".$table."` SET `users_id`=".$user_id." WHERE `".$table."`.`id`=".$item_id.";";
 			$result = $DB->query($query) or die($DB->error());
@@ -338,70 +338,59 @@ class PluginReservationInfo extends CommonGLPI
 	public function updateReservationInfoForEachItem($item_type){
 		
 		$DB = new DB;
+		$upd_user = self::getPluginSetting("Update_items_users");
 
-		// Update status for non-bookable iems:
-		$table = "glpi_" . strtolower($item_type)."s";
-		$query_items = "SELECT `id` FROM `" . $table . "`;";
-		$items = $DB->query($query_items) or die($DB->error());
-		foreach($items as $item){
-			$table = "glpi_reservationitems";
-			$query_bookable_item = "SELECT `items_id` FROM `" . $table . "` WHERE `" . $table . "`.`itemtype`='" . $item_type . "' AND  `" . $table . "`.`items_id`='" . $item['id'] . "';";
-			$bookable_items = $DB->query($query_bookable_item) or die($DB->error());
-			if(mysqli_num_rows($bookable_items) == 0){
-				$booking_status = __('Not_bookable', 'ReservationInfo');
-				self::setItemReservationInfo($item_type, $item['id'], 0, $booking_status, "", "", "");
-			}
+		// Delete no more bookable items from db table glpi_plugin_reservationinfo:
+		$table = "glpi_plugin_reservationinfo";
+		$query = "SELECT * FROM `glpi_plugin_reservationinfo` WHERE `items_id` NOT IN (SELECT `items_id` FROM `glpi_reservationitems` WHERE `glpi_reservationitems`.`itemtype`='" . $item_type . "')";
+		$not_bookable_items = $DB->query($query) or die($DB->error());
+		foreach($not_bookable_items as $item){
+			$query_del = "DELETE FROM `glpi_plugin_reservationinfo` WHERE `glpi_plugin_reservationinfo`.`itemtype`='" . $item_type . "' AND `items_id`=".$item['items_id'].";";
+			$del = $DB->query($query_del) or die($DB->error());
 		}
 
 		// Get all bookable items of current item type:
 		$table = "glpi_reservationitems";
-		$query_reservationitems = "SELECT * FROM `" . $table . "` WHERE `" . $table . "`.`itemtype`='" . $item_type . "';";
-		$reservationitems = $DB->query($query_reservationitems) or die($DB->error());
+		$query = "SELECT * FROM `" . $table . "` WHERE `" . $table . "`.`itemtype`='" . $item_type . "';";
+		$reservationitems = $DB->query($query) or die($DB->error());
 		
 		// For each bookable item:
 		foreach($reservationitems as $reservationitem){
 			
-			$booked_item = 0;
-
-			// Get item settings:
-			$item = self::getItemFromReservationItemId($reservationitem['itemtype'], $reservationitem['items_id']);
-
-			// Check if booking is active for this item:
-			$query_active_booking = "SELECT `is_active` FROM `glpi_reservationitems` WHERE `id`=".$reservationitem['id'].";";
-			$result_active_booking = $DB->query($query_active_booking) or die($DB->error());
-			$item_active = $result_active_booking->fetch_assoc();
-			$item_active = $item_active['is_active'];
-			$booking_status = __('Not_available', 'ReservationInfo');	// default value
+			if($reservationitem['is_active'] == 0){
+				$booking_status = __('Not_available', 'ReservationInfo');
+				self::setItemReservationInfo($reservationitem['itemtype'], $reservationitem['items_id'], 0, $booking_status, "", "", "", $upd_user);
+				continue;
+			} 
 			
 			// Check if item is currently booked:
 			$query_curr_booking = "SELECT * FROM `glpi_reservations` WHERE `reservationitems_id`=".$reservationitem['id']." AND (`begin`<NOW() AND `end`>NOW());";
 			$result_curr_booking = $DB->query($query_curr_booking) or die($DB->error());
-			$booked_item = mysqli_num_rows($result_curr_booking);
 			
 			// If item is currently booked:
-			if($booked_item == 1){
+			if(mysqli_num_rows($result_curr_booking)){	
 				
 				// For each currently booked item:
 				$booking = $result_curr_booking->fetch_assoc();			
-				if($item_active == 1) $booking_status = __('Booked', 'ReservationInfo');
+				$booking_status = __('Booked', 'ReservationInfo');
 				
 				// Update item user and booking information tables:
-				self::setItemReservationInfo($reservationitem['itemtype'], $item['id'], $booking['users_id'], $booking_status, $booking['begin'], $booking['end'], addslashes($booking['comment']));
+				self::setItemReservationInfo($reservationitem['itemtype'], $reservationitem['items_id'], $booking['users_id'], $booking_status, $booking['begin'], $booking['end'], addslashes($booking['comment']), $upd_user);
 				
 			}
 			// If item is currently available:
 			else {
 				
 				// Update item status (empty 'User' and 'Comment' fields for this item):
-				if($item_active == 1) $booking_status = __('Available', 'ReservationInfo');
-				self::setItemReservationInfo($reservationitem['itemtype'], $item['id'], 0, $booking_status, "", "", "");
+				$booking_status = __('Available', 'ReservationInfo');
+				self::setItemReservationInfo($reservationitem['itemtype'], $reservationitem['items_id'], 0, $booking_status, NULL, NULL, "", $upd_user);
 				
-			}
+			} 
 			
 		}
 		
 		return true;
 		
 	}
-	
+
 }
