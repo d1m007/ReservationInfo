@@ -30,7 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 
-define('PLUGIN_RESERVATIONINFO_VERSION', '0.0.1');
+define('PLUGIN_RESERVATIONINFO_VERSION', '0.0.2');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_RESERVATIONINFO_MIN_GLPI', '10.0.0');
@@ -126,8 +126,8 @@ function plugin_init_reservationinfo() {
 	include_once(PLUGIN_RESERVATIONINFO_DIR . "/inc/reservationinfo.class.php");
 	$ri = new PluginReservationInfo;
 	
-	// Exit if plugin is not installed:
-	if($ri->getActiveItemTypes() == NULL) return;	
+	// Exit if plugin is not installed/active:
+	if (!Plugin::isPluginActive('ReservationInfo')) return;
 	
 	// Exit if current page is not concerned by reservations:
 	$current_page = explode('/', $_SERVER["SCRIPT_NAME"]);
