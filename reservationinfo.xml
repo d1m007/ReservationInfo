@@ -30,7 +30,7 @@ Le plugin "Info Réservations" permet d'afficher l'état actuel des réservation
    </authors>
    <versions>
       <version>
-         <num>0.0.1</num>
+         <num>0.0.2</num>
          <compatibility>~10.0.0</compatibility>
          <download_url>https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfo.zip</download_url>
       </version>
