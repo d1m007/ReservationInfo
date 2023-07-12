@@ -69,7 +69,7 @@ function plugin_reservationinfo_getAddSearchOptions($itemtype)
 			&& count($_SESSION['glpiactiveentities']) > 0
 		) {
 			
-			if ($itemtypes !== false) return $ri->getAddSearchOptions($itemtype);
+			return $ri->getAddSearchOptions($itemtype);
 
 		}
 	}
@@ -81,5 +81,6 @@ function plugin_reservationinfo_getAddSearchOptions($itemtype)
 /**
  * Called when plugin is init - REQUIRED
  */
-function plugin_reservationinfo_postinit() {	
+function plugin_reservationinfo_postinit() {
+
 }

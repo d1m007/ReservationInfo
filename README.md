@@ -4,7 +4,7 @@ Download the plugin here : https://github.com/dim00z/ReservationInfo/raw/main/mi
 
 ## Introduction
 
-The Reservation Info plugin show the current reservation status in lists of items. It's useful to see which items are already booked at first sight.
+The Reservation Info plugin show current reservation status in lists of items. It's useful to see which items are already booked at first sight.
 
 ## Screenshots
 
@@ -22,7 +22,7 @@ It is distributed under the GNU GENERAL PUBLIC LICENSE Version 3 - please consul
 This plugin works with all types of bookable items: computers, monitors, software, network devices, devices, printers and phones.
 
 It's compatible with GLPI 10.0.0 => 10.0.7. Translations available in en_EN, fr_FR, es_ES. It's up to you to add more.
-All its database tables are removed when uninstalling the plugin.
+The plugin database table is removed when uninstalling the plugin.
 
 ## Installation
 

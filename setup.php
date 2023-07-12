@@ -30,7 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 
-define('PLUGIN_RESERVATIONINFO_VERSION', '0.0.2');
+define('PLUGIN_RESERVATIONINFO_VERSION', '0.0.3');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_RESERVATIONINFO_MIN_GLPI', '10.0.0');
@@ -113,35 +113,21 @@ function plugin_reservationinfo_check_prerequisites() {
  */
 function plugin_init_reservationinfo() {
    
-	global $PLUGIN_HOOKS,$CFG_GLPI;
+	global $PLUGIN_HOOKS;
 	
 	$PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['ReservationInfo'] = true;
+	
+	// Load plugin custom class:
+	include_once(PLUGIN_RESERVATIONINFO_DIR . "/inc/reservationinfo.class.php");
+		
+	// Exit if plugin is not installed/active:
+	if (!Plugin::isPluginActive('ReservationInfo')) return;
 	
 	// Add plugin config page:
 	if (Session::haveRight('config', UPDATE)) {
 		$PLUGIN_HOOKS['config_page']['ReservationInfo'] = 'front/config.form.php';
 	}
-	
-	// Load plugin custom class:
-	include_once(PLUGIN_RESERVATIONINFO_DIR . "/inc/reservationinfo.class.php");
-	$ri = new PluginReservationInfo;
-	
-	// Exit if plugin is not installed/active:
-	if (!Plugin::isPluginActive('ReservationInfo')) return;
-	
-	// Exit if current page is not concerned by reservations:
-	$current_page = explode('/', $_SERVER["SCRIPT_NAME"]);
-	$current_page = $current_page[count($current_page) - 1];
-	$current_page = explode('.', $current_page);
-	if($current_page[1] == "form") return;	// exit plugin as current page is not concerned by reservations
-	$current_page = ucfirst($current_page[0]);
-	if($current_page == "Networkequipment") $current_page = "NetworkEquipment";
-	
-	// Update reservations info:
-	if(in_array($current_page, $ri->getActiveItemTypes())){		
-		$ri->updateReservationInfoForEachItem($current_page);		
-	}
-	
+
 	return;
    
 }
