@@ -17,7 +17,7 @@ The "Reservation Info" plugin allows to show the current status of bookings in l
 El plugin "Información de reservas" permite mostrar el estado actual de las reservas en las listas de elementos. Funciona para todo tipo de elementos reservables: ordenadores, monitores, software, dispositivos de red, dispositivos, impresoras y teléfonos.
          </es>
          <fr>
-Le plugin "Info Réservations" permet d'afficher l'état actuel des réservations dans les listes d'éléments. Utile pour savoir quels éléments sont déjà réservés au premier coup d'oeil. Le plugin fonctionne pour tous les types d'éléments réservables : ordinateurs, moniteurs, logiciels, matériels réseau, périphériques, imprimantes et téléphones. Le plugin est compatible avec GLPI 10.0.0 => 10.0.7. Traductions disponibles en en-GB, fr-FR, es-ES. Libre à vous d'en ajouter d'autres. Toutes la table en base de données est supprimée lors de la désinstallation du plugin.
+Le plugin "Info Réservations" permet d'afficher l'état actuel des réservations dans les listes d'éléments. Utile pour savoir quels éléments sont déjà réservés au premier coup d'oeil. Le plugin fonctionne pour tous les types d'éléments réservables : ordinateurs, moniteurs, logiciels, matériels réseau, périphériques, imprimantes et téléphones. Compatible avec GLPI 10.0.0 => 10.0.7. Traductions disponibles en en-GB, fr-FR, es-ES (libre à vous d'en ajouter d'autres). La table en base de données est supprimée lors de la désinstallation du plugin.
          </fr>
       </long>
    </description>
