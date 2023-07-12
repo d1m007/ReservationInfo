@@ -37,22 +37,6 @@ class PluginReservationInfo extends CommonGLPI
 	*/
 	public function createPluginDB(){
 		
-		// Table to store reservations info:
-		$DB = new DB;
-		$table = "glpi_plugin_reservationinfo";
-		$query = "CREATE TABLE `".$table."` (
-						`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-						`items_id` INT(10) UNSIGNED NOT NULL,
-						`itemtype` VARCHAR(255) DEFAULT 'Computer',
-						`status` VARCHAR(255) DEFAULT NULL,
-						`users_id` INT(10) UNSIGNED NOT NULL DEFAULT 0,
-						`begin` VARCHAR(255) DEFAULT NULL,
-						`end` VARCHAR(255) DEFAULT NULL,
-						`comment` text DEFAULT NULL,
-						PRIMARY KEY (`id`) USING BTREE
-					) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;";
-		$result = $DB->query($query);	
-		
 		// Table to store plugin config:
 		$DB = new DB;
 		$table = "glpi_plugin_reservationinfo_config";
@@ -70,8 +54,7 @@ class PluginReservationInfo extends CommonGLPI
 					(4, 'NetworkEquipment', '0'),
 					(5, 'Peripheral', '0'),
 					(6, 'Printer', '0'),
-					(7, 'Phone', '0'),
-					(8, 'Update_items_users', '0');";
+					(7, 'Phone', '0');";
 		$result = $DB->query($query) or die($DB->error());
 		
 		return;
@@ -86,125 +69,15 @@ class PluginReservationInfo extends CommonGLPI
 		
 		// Drop plugin tables:
 		$DB = new DB;
-		$table = "glpi_plugin_reservationinfo";
-		$query = "DROP TABLE `".$table."`;";
-		$result = $DB->query($query) or die($DB->error());
+		$table = "glpi_plugin_reservationinfo";	// for old version compatibility
+		$query = "DROP TABLE `".$table."`;";	// for old version compatibility
+		$result = $DB->query($query);			// for old version compatibility	
 		$table = "glpi_plugin_reservationinfo_config";
 		$query = "DROP TABLE `".$table."`;";
 		$result = $DB->query($query) or die($DB->error());
 		
 		return;
 		
-	}
-
-	/**
-	* Function to update a row in the database or insert a new one
-	*
-	*/
-	public function updateOrInsert($table, $fields, $values, $where) {
-
-		$DB = new DB;
-
-		$query = "SELECT `".$fields[0]."` FROM `".$table."` WHERE ".$where.";";
-		$result = $DB->query($query) or die($DB->error());
-		$nb_results = mysqli_num_rows($result);
-		if ($nb_results == 0) {
-			$query = "INSERT INTO `".$table."` (";
-			for($i=0; $i<count($fields); $i++){
-				$query_f[] = "`".$fields[$i]."`";
-			}
-			for($i=0; $i<count($values); $i++){
-				$query_v[] = "'".$values[$i]."'";
-			}			
-			$query = $query . implode(",", $query_f) . ") VALUES (" . implode(",", $query_v) . ");";
-		} else if ($nb_results > 0) {
-			$query = "UPDATE `".$table."` SET ";
-			for($i=0; $i<count($fields); $i++){
-				$query_args[] = "`" . $fields[$i] . "`='".$values[$i]."'";
-			}
-			$query = $query . implode(",", $query_args) . " WHERE " . $where . ";";
-		}
-		$result = $DB->query($query) or die($DB->error());
-		//self::alert("Query : " . $query);
-		return;
-	}
-
-	/**
-	* This function is called to add reservation info fields
-	*  in available fields to display on items listing pages
-	*/
-	public function getAddSearchOptions($itemtype)
-	{
-
-		$obj = array (
-			65536 => 
-			array (
-				'table' => 'glpi_plugin_reservationinfo',
-				'field' => 'status',
-				'name' => __('Reservation Status', 'ReservationInfo'),
-				'joinparams' => 
-				array (
-					'jointype' => 'itemtype_item',
-				),
-				'datatype' => 'string',
-			),
-			65537 => 
-			array (
-				'table' => 'glpi_users',
-				'field' => 'name',
-				'name' =>  __('Reservation User', 'ReservationInfo'),
-				'joinparams' => 
-				array (
-					'jointype' => '',
-					'beforejoin' => 
-					array (
-						'table' => 'glpi_plugin_reservationinfo',
-						'joinparams' => 
-						array (
-						'jointype' => 'itemtype_item',
-						),
-					),
-				),
-				'datatype' => 'dropdown',
-			),
-			65538 => 
-			array (
-				'table' => 'glpi_plugin_reservationinfo',
-				'field' => 'begin',
-				'name' => __('Reservation Begin', 'ReservationInfo'),
-				'joinparams' => 
-				array (
-				'jointype' => 'itemtype_item',
-				),
-				'datatype' => 'datetime',
-			),
-			65539 => 
-			array (
-				'table' => 'glpi_plugin_reservationinfo',
-				'field' => 'end',
-				'name' => __('Reservation End', 'ReservationInfo'),
-				'joinparams' => 
-				array (
-				'jointype' => 'itemtype_item',
-				),
-				'datatype' => 'datetime',
-			),
-			65540 => 
-			array (
-				'table' => 'glpi_plugin_reservationinfo',
-				'field' => 'comment',
-				'name' => __('Reservation Comment', 'ReservationInfo'),
-				'joinparams' => 
-				array (
-				'jointype' => 'itemtype_item',
-				),
-				'datatype' => 'text',
-			) 
-			
-		);
-
-		return $obj;
-
 	}
 
 	/**
@@ -229,18 +102,13 @@ class PluginReservationInfo extends CommonGLPI
 	function savePluginConfig($setting, $value){
 		
 		$DB = new DB;
-	
 		$table = "glpi_plugin_reservationinfo_config";
-		$fields = ["setting", "value"];
-		$values = [$setting, $value];
-		$where = "`setting`='".$setting."'";
-
-		self::updateOrInsert($table, $fields, $values, $where);
-		
-		return true;
+		$query = "UPDATE `".$table."` SET `value`='".$value."' WHERE `setting`='".$setting."';";
+		$result = $DB->query($query) or die($DB->error());
+		return true;		
 		
 	}
-
+	
 	/**
 	* This function is called to get list of all possible bookable item types
 	* 
@@ -248,10 +116,10 @@ class PluginReservationInfo extends CommonGLPI
 	public static function getAllItemTypes()
     {
 
-		return(array('Computer','Monitor','Software','NetworkEquipment','Peripheral','Printer','Phone'));
+		return(['Computer','Monitor','Software','NetworkEquipment','Peripheral','Printer','Phone']);
 
 	}
-	
+
 	/**
 	* This function is called to get list of item types selected to display info
 	* 
@@ -261,24 +129,13 @@ class PluginReservationInfo extends CommonGLPI
 		
 		$DB = new DB;		
 		$table = "glpi_plugin_reservationinfo_config";
-		$query = "SELECT `setting`,`value` FROM `".$table."` WHERE `value`='1';";
+		$query = "SELECT `setting` FROM `".$table."` WHERE `value`='1';";
 		$result = $DB->query($query);
 		
 		if($result){
 
-			$types = self::getAllItemTypes();
-			$tab = array();
-
-			foreach($result as $row){
-				foreach($row as $setting){
-					if(in_array($setting, $types)){
-		
-							$tab[] = $row['setting'];
-		
-					}
-				}
-			}
-
+			$tab = [];
+			foreach($result as $row) $tab[] = $row['setting'];
 			return ($tab);
 
 		}
@@ -286,111 +143,103 @@ class PluginReservationInfo extends CommonGLPI
 		return;
 
 	}
-	
+
 	/**
-	* This function is used to get item from reservation itemId
-	*  
+	* This function is called to add reservation info fields
+	*  in available fields to display on items listing pages
 	*/
-	private function getItemFromReservationItemId($item_type, $reservationitem_id){
+	public function getAddSearchOptions($itemtype)
+	{
 
-		$DB = new DB;		
-		$table = "glpi_".strtolower($item_type)."s";
-		$query = "SELECT `id`,`name` FROM `".$table."` WHERE `id`='".$reservationitem_id."';";
-		$result = $DB->query($query) or die($DB->error());
-		$row = $result->fetch_assoc();
-		
-		return ($row);
-		 
-	}
+		$date = date("Y-m-d H:i:s");
+		$obj = [
+			65537 => [
+				'table' => 'glpi_users',
+				'field' => 'name',
+				'name' =>  __('Reservation User', 'ReservationInfo'),
+				'joinparams' => [
+					'jointype' => '',
+					'beforejoin' => [
+						'table' => 'glpi_reservations',						
+						'joinparams' => [
+							'jointype' => 'child',
+							'condition' => [
+								'NEWTABLE.begin' => ['<', $date],
+								'NEWTABLE.end' => ['>', $date],
+							],
+							'beforejoin' => [
+								'table' => 'glpi_reservationitems',
+								'joinparams' => [
+									'jointype' => 'itemtype_item',
+								],
+							],
+						],
+					],
+				],
+				'datatype' => 'dropdown',
+			],
+			65538 => [
+				'table' => 'glpi_reservations',
+				'field' => 'begin',
+				'name' => __('Reservation Begin', 'ReservationInfo'),
+				'joinparams' => [
+					'jointype' => 'child',
+					'condition' => [
+						'NEWTABLE.begin' => ['<', $date],
+						'NEWTABLE.end' => ['>', $date],
+					],
+					'beforejoin' => [
+						'table' => 'glpi_reservationitems',
+						'joinparams' => [
+							'jointype' => 'itemtype_item',
+						],
+					]
+				],
+				'datatype' => 'datetime',
+			],
+			65539 => [
+				'table' => 'glpi_reservations',
+				'field' => 'end',
+				'name' => __('Reservation End', 'ReservationInfo'),
+				'joinparams' => [
+					'jointype' => 'child',
+					'condition' => [
+						'NEWTABLE.begin' => ['<', $date],
+						'NEWTABLE.end' => ['>', $date],
+					],
+					'beforejoin' => [
+						'table' => 'glpi_reservationitems',
+						'joinparams' => [
+							'jointype' => 'itemtype_item',
+						],
+					],
+				],
+				'datatype' => 'datetime',
+			],
+			65540 => [
+				'table' => 'glpi_reservations',
+				'field' => 'comment',
+				'name' => __('Reservation Comment', 'ReservationInfo'),	
+				'joinparams' => [
+					'jointype' => 'child',
+					'condition' => [
+						'NEWTABLE.begin' => ['<', $date],
+						'NEWTABLE.end' => ['>', $date],
+						],
+					'beforejoin' => [
+						'table' => 'glpi_reservationitems',
+						'joinparams' => [
+							'jointype' => 'itemtype_item',
+						],
+					],
+				],				 
+				'datatype' => 'text',
+			]			
 
-	/**
-	* This function is used to set item reservation info
-	*  
-	*/	
-	private function setItemReservationInfo($item_type, $item_id, $user_id, $status, $begin, $end, $comment, $upd_user=0){
-		 
-		$DB = new DB;
-		
-		// Set booking user as item user in item table ("Computer", "Monitor", ...):
-		// (only if config option is selected)
-		if($upd_user) {
-			$table = "glpi_".strtolower($item_type)."s";
-			$query = "UPDATE `".$table."` SET `users_id`=".$user_id." WHERE `".$table."`.`id`=".$item_id.";";
-			$result = $DB->query($query) or die($DB->error());
-		}
-		
-		// Update reservation info for current item:
-		$table = "glpi_plugin_reservationinfo";
-		$fields = ["items_id", "itemtype", "status", "users_id", "begin", "end", "comment"];
-		$values = [$item_id, $item_type, $status, $user_id, $begin, $end, $comment];
-		$where = "`".$table."`.`items_id`='".$item_id."' AND `".$table."`.`itemtype`='".$item_type."'";
+		];
 
-		self::updateOrInsert($table, $fields, $values, $where);
+		return $obj;
 
-		return true;
-		 
-	}
-
-	/**
-	* This function is used to updat reservation info for each item
-	*  
-	*/	
-	public function updateReservationInfoForEachItem($item_type){
-		
-		$DB = new DB;
-		$upd_user = self::getPluginSetting("Update_items_users");
-
-		// Delete no more bookable items from db table glpi_plugin_reservationinfo:
-		$table = "glpi_plugin_reservationinfo";
-		$query = "SELECT * FROM `glpi_plugin_reservationinfo` WHERE `items_id` NOT IN (SELECT `items_id` FROM `glpi_reservationitems` WHERE `glpi_reservationitems`.`itemtype`='" . $item_type . "')";
-		$not_bookable_items = $DB->query($query) or die($DB->error());
-		foreach($not_bookable_items as $item){
-			$query_del = "DELETE FROM `glpi_plugin_reservationinfo` WHERE `glpi_plugin_reservationinfo`.`itemtype`='" . $item_type . "' AND `items_id`=".$item['items_id'].";";
-			$del = $DB->query($query_del) or die($DB->error());
-		}
-
-		// Get all bookable items of current item type:
-		$table = "glpi_reservationitems";
-		$query = "SELECT * FROM `" . $table . "` WHERE `" . $table . "`.`itemtype`='" . $item_type . "';";
-		$reservationitems = $DB->query($query) or die($DB->error());
-		
-		// For each bookable item:
-		foreach($reservationitems as $reservationitem){
-			
-			if($reservationitem['is_active'] == 0){
-				$booking_status = __('Not_available', 'ReservationInfo');
-				self::setItemReservationInfo($reservationitem['itemtype'], $reservationitem['items_id'], 0, $booking_status, "", "", "", $upd_user);
-				continue;
-			} 
-			
-			// Check if item is currently booked:
-			$query_curr_booking = "SELECT * FROM `glpi_reservations` WHERE `reservationitems_id`=".$reservationitem['id']." AND (`begin`<NOW() AND `end`>NOW());";
-			$result_curr_booking = $DB->query($query_curr_booking) or die($DB->error());
-			
-			// If item is currently booked:
-			if(mysqli_num_rows($result_curr_booking)){	
-				
-				// For each currently booked item:
-				$booking = $result_curr_booking->fetch_assoc();			
-				$booking_status = __('Booked', 'ReservationInfo');
-				
-				// Update item user and booking information tables:
-				self::setItemReservationInfo($reservationitem['itemtype'], $reservationitem['items_id'], $booking['users_id'], $booking_status, $booking['begin'], $booking['end'], addslashes($booking['comment']), $upd_user);
-				
-			}
-			// If item is currently available:
-			else {
-				
-				// Update item status (empty 'User' and 'Comment' fields for this item):
-				$booking_status = __('Available', 'ReservationInfo');
-				self::setItemReservationInfo($reservationitem['itemtype'], $reservationitem['items_id'], 0, $booking_status, NULL, NULL, "", $upd_user);
-				
-			} 
-			
-		}
-		
-		return true;
-		
 	}
 
 }
