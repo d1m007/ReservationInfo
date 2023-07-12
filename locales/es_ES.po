@@ -20,10 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: front/reservationinfo.class.php
-msgid "Reservation Status"
-msgstr "Estado de la reserva"
-
-#: front/reservationinfo.class.php
 msgid "Reservation User"
 msgstr "Reservado por"
 
@@ -39,22 +35,6 @@ msgstr "Fin de reserva"
 msgid "Reservation Comment"
 msgstr "Comentario de reserva"
 
-#: front/reservationinfo.class.php
-msgid "Not_bookable"
-msgstr "No reservable"
-
-#: front/reservationinfo.class.php
-msgid "Not_available"
-msgstr "No disponible"
-
-#: front/reservationinfo.class.php
-msgid "Available"
-msgstr "Disponible"
-
-#: front/reservationinfo.class.php
-msgid "Booked"
-msgstr "Reservado"
-
 #: front/config.form.php
 msgid "Plugin Reservation Info - Configuration"
 msgstr "Plugin Información de reservas - Configuración"
@@ -62,14 +42,6 @@ msgstr "Plugin Información de reservas - Configuración"
 #: front/config.form.php
 msgid "Select item types for which to display booking information"
 msgstr "Seleccione los tipos de artículos para los que desea visualizar información sobre reservas"
-
-#: front/config.form.php
-msgid "Optional"
-msgstr "Opcional"
-
-#: front/config.form.php
-msgid "Automatically update items' users with bookers IDs"
-msgstr "Actualización automática del usuario del elemento con el autor de la reserva"
 
 #: front/config.form.php
 msgid "Save"

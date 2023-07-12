@@ -20,10 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: front/reservationinfo.class.php
-msgid "Reservation Status"
-msgstr "Booking status"
-
-#: front/reservationinfo.class.php
 msgid "Reservation User"
 msgstr "Booked by"
 
@@ -39,18 +35,6 @@ msgstr "Booking end"
 msgid "Reservation Comment"
 msgstr "Booking comment"
 
-#: front/reservationinfo.class.php
-msgid "Not_bookable"
-msgstr "Not bookable"
-
-#: front/reservationinfo.class.php
-msgid "Not_available"
-msgstr "Not available"
-
-#: front/reservationinfo.class.php
-msgid "Available"
-msgstr "Available"
-
 #: front/config.form.php
 msgid "Plugin Reservation Info - Configuration"
 msgstr "Plugin Reservation Info - Configuration"
@@ -58,18 +42,6 @@ msgstr "Plugin Reservation Info - Configuration"
 #: front/config.form.php
 msgid "Select item types for which to display booking information"
 msgstr "Select item types for which to display booking information"
-
-#: front/reservationinfo.class.php
-msgid "Booked"
-msgstr "Booked"
-
-#: front/config.form.php
-msgid "Optional"
-msgstr "Optional"
-
-#: front/config.form.php
-msgid "Automatically update items' users with bookers IDs"
-msgstr "Automatically update items' users with bookers IDs"
 
 #: front/config.form.php
 msgid "Save"
