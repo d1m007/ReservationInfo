@@ -39,9 +39,7 @@ Plugin::load('ReservationInfo');
 
 Html::header(__('Plugin Reservation Info - Configuration', 'ReservationInfo'), $_SERVER['PHP_SELF'], "config", "plugins");
 
-// Get available profiles in GLPI config :
 $ri = new PluginReservationInfo;
-$plugin_types = $ri->getAllItemTypes();
 
 $out  = ("\n<div class=\"tab-content p-2 flex-grow-1 card border-start-0\" style=\"min-height: 150px\">");
 $out .= ("<table>\n<tbody>\n");
@@ -93,13 +91,6 @@ $out .= ("		<input type=\"checkbox\" id=\"Phone\" name=\"Phone\" value=\"1\"");
 if($ri->getPluginSetting("Phone") == 1) $out .= "checked";
 $out .= ">\n";
 $out .= ("		<label for=\"Phone\">"._n("Phone", "Phones", 2)."</label>");
-$out .= ("	</td></tr>\n");
-$out .= ("	<tr><td colspan=\"2\" style=\"padding-top:20px;padding-left:20px;padding-bottom:10px;\">" . __("Optional", "ReservationInfo") . ":</td></tr>\n");
-$out .= ("	<tr><td colspan=\"2\" style=\"padding-left:40px;\">");
-$out .= ("		<input type=\"checkbox\" id=\"Update_items_users\" name=\"Update_items_users\" value=\"1\"");
-if($ri->getPluginSetting("Update_items_users") == 1) $out .= "checked";
-$out .= ">\n";
-$out .= ("		<label for=\"Update_items_users\">".__("Automatically update items' users with bookers IDs", "ReservationInfo")."</label>");
 $out .= ("	</td></tr>\n");
 $out .= ("	<tr><td colspan=\"2\" style=\"padding-top: 20px;padding-left: 60px; \"><input type=\"submit\" class=\"submit\" value=\"" . __('Save', 'ReservationInfo') . "\" name=\"save\"/></td>\n");
 $out .= ("</fieldset>\n</form>\n</tbody>\n</table>\n</div>\n");

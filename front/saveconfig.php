@@ -41,13 +41,10 @@ if ($_POST && isset($_POST['save'])) {
 	
 	foreach($list as $itemtype){
 		
-		if(isset($_POST[$itemtype])) $ri->savePluginConfig($itemtype, $_POST[$itemtype]);
+		if(isset($_POST[$itemtype])) $ri->savePluginConfig($itemtype, 1);
 		else $ri->savePluginConfig($itemtype, 0);
 		
 	}
-
-	if(isset($_POST["Update_items_users"])) $ri->savePluginConfig("Update_items_users", 1);
-	else $ri->savePluginConfig("Update_items_users", 0);
 
 	// Redirect the user to previous page:
 	Html::back();
