@@ -19,19 +19,31 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
+msgid "Active"
+msgstr "Activa"
+
+#: inc/reservationinfo.class.php
+msgid "Unavailable"
+msgstr "Indisponible"
+
+#: inc/reservationinfo.class.php
+msgid "Reservation Status"
+msgstr "Estado de reserva"
+
+#: inc/reservationinfo.class.php
 msgid "Reservation User"
 msgstr "Reservado por"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
 msgid "Reservation Begin"
 msgstr "Inicio de reserva"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
 msgid "Reservation End"
 msgstr "Fin de reserva"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
 msgid "Reservation Comment"
 msgstr "Comentario de reserva"
 
@@ -51,6 +63,6 @@ msgstr "Guardar"
 msgid "This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.8"
 msgstr "Este plugin requiere GLPI >= 10.0.0 y GLPI < 10.0.8"
 
-#: setup.php:74
+#: setup.php
 msgid "Reservation Info"
 msgstr "Información de reservas"

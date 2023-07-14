@@ -19,19 +19,31 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
+msgid "Active"
+msgstr "Active"
+
+#: inc/reservationinfo.class.php
+msgid "Unavailable"
+msgstr "Unavailable"
+
+#: inc/reservationinfo.class.php
+msgid "Reservation Status"
+msgstr "Booking status"
+
+#: inc/reservationinfo.class.php
 msgid "Reservation User"
 msgstr "Booked by"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
 msgid "Reservation Begin"
 msgstr "Booking begin"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
 msgid "Reservation End"
 msgstr "Booking end"
 
-#: front/reservationinfo.class.php
+#: inc/reservationinfo.class.php
 msgid "Reservation Comment"
 msgstr "Booking comment"
 
