@@ -22,7 +22,7 @@ Le plugin "Info Réservations" permet d'afficher l'état actuel des réservation
       </long>
    </description>
    <homepage>https://github.com/dim00z/ReservationInfo</homepage>
-   <download>https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfos.zip</download>
+   <download>https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfo.zip</download>
    <issues>https://github.com/dim00z/ReservationInfo/issues</issues>
    <readme>https://raw.githubusercontent.com/dim00z/ReservationInfo/main/README.md</readme>
    <authors>
@@ -41,7 +41,7 @@ Le plugin "Info Réservations" permet d'afficher l'état actuel des réservation
          <compatibility>10.0.2</compatibility>
          <compatibility>10.0.1</compatibility>
          <compatibility>10.0.0</compatibility>
-         <download_url>https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfos.zip</download_url>
+         <download_url>https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfo.zip</download_url>
       </version>
    </versions>
    <langs>
