@@ -30,40 +30,16 @@
 
 use Glpi\Plugin\Hooks;
 
-define('PLUGIN_RESERVATIONINFO_VERSION', '0.0.3');
+define('PLUGIN_RESERVATIONINFO_VERSION', '0.0.4');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_RESERVATIONINFO_MIN_GLPI', '10.0.0');
 
 // Maximum GLPI version, exclusive
-define('PLUGIN_RESERVATIONINFO_MAX_GLPI', '10.0.99');
+define('PLUGIN_RESERVATIONINFO_MAX_GLPI', '10.0.10');
 
 if (!defined("PLUGIN_RESERVATIONINFO_DIR")) {
     define("PLUGIN_RESERVATIONINFO_DIR", Plugin::getPhpDir("ReservationInfo"));
-}
-if (!defined("PLUGIN_RESERVATIONINFO_WEB_DIR")) {
-    define("PLUGIN_RESERVATIONINFO_WEB_DIR", Plugin::getWebDir("ReservationInfo"));
-}
-
-if (!defined("PLUGIN_RESERVATIONINFO_DOC_DIR")) {
-    define("PLUGIN_RESERVATIONINFO_DOC_DIR", GLPI_PLUGIN_DOC_DIR . "/ReservationInfo");
-}
-if (!file_exists(PLUGIN_RESERVATIONINFO_DOC_DIR)) {
-    mkdir(PLUGIN_RESERVATIONINFO_DOC_DIR);
-}
-
-if (!defined("PLUGIN_RESERVATIONINFO_CLASS_PATH")) {
-    define("PLUGIN_RESERVATIONINFO_CLASS_PATH", PLUGIN_RESERVATIONINFO_DIR . "/inc");
-}
-if (!file_exists(PLUGIN_RESERVATIONINFO_CLASS_PATH)) {
-    mkdir(PLUGIN_RESERVATIONINFO_CLASS_PATH);
-}
-
-if (!defined("PLUGIN_RESERVATIONINFO_FRONT_PATH")) {
-    define("PLUGIN_RESERVATIONINFO_FRONT_PATH", PLUGIN_RESERVATIONINFO_DIR . "/front");
-}
-if (!file_exists(PLUGIN_RESERVATIONINFO_FRONT_PATH)) {
-    mkdir(PLUGIN_RESERVATIONINFO_FRONT_PATH);
 }
 
 /**
@@ -98,8 +74,8 @@ function plugin_reservationinfo_check_config() {
 function plugin_reservationinfo_check_prerequisites() {
  
     // Check that GLPI version is compatible:
-    if (version_compare(GLPI_VERSION, '10.0.0', 'lt') || version_compare(GLPI_VERSION, '10.0.7', 'gt')) {
-        echo __('This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.8', 'ReservationInfo');
+    if (version_compare(GLPI_VERSION, PLUGIN_RESERVATIONINFO_MIN_GLPI, 'lt') || version_compare(GLPI_VERSION, PLUGIN_RESERVATIONINFO_MAX_GLPI, 'gt')) {
+        echo __('This plugin requires GLPI >= '.PLUGIN_RESERVATIONINFO_MIN_GLPI.' and GLPI < ' . PLUGIN_RESERVATIONINFO_MAX_GLPI, 'ReservationInfo');
         return false;
     }
  

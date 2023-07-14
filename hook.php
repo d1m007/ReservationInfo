@@ -48,7 +48,7 @@ function plugin_reservationinfo_uninstall() {
 
 	// Drop database table:
 	$ri = new PluginReservationInfo;
-    $ri->dropPluginDB();
+    $ri->dropPluginDB(1);
 	
 	return true;
 	
