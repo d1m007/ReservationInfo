@@ -37,24 +37,29 @@ class PluginReservationInfo extends CommonGLPI
 	*/
 	public function createPluginDB(){
 		
-		// Table to store plugin config:
+		// Delete existing tables if any:
+		self::dropPluginDB(0);
+
+		// Create table to store plugin config:
 		$DB = new DB;
 		$table = "glpi_plugin_reservationinfo_config";
 		$query = "CREATE TABLE `glpi_plugin_reservationinfo_config` (
-						`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+						`id` INT(10) UNSIGNED,
 						`setting` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
 						`value` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
 						PRIMARY KEY (`id`) USING BTREE
 					) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 		$result = $DB->query($query) or die($DB->error());
 		$query = "INSERT INTO `glpi_plugin_reservationinfo_config` (`id`, `setting`, `value`) VALUES
-					(1, 'Computer', '0'),
-					(2, 'Monitor', '0'),
-					(3, 'Software', '0'),
-					(4, 'NetworkEquipment', '0'),
-					(5, 'Peripheral', '0'),
-					(6, 'Printer', '0'),
-					(7, 'Phone', '0');";
+					(0, '0', '".__('Unavailable', 'ReservationInfo')."'),
+					(1, '1', '".__('Active', 'ReservationInfo')."'),
+					(2, 'Computer', '0'),
+					(3, 'Monitor', '0'),
+					(4, 'Software', '0'),
+					(5, 'NetworkEquipment', '0'),
+					(6, 'Peripheral', '0'),
+					(7, 'Printer', '0'),
+					(8, 'Phone', '0');";
 		$result = $DB->query($query) or die($DB->error());
 		
 		return;
@@ -63,9 +68,9 @@ class PluginReservationInfo extends CommonGLPI
 	
 	/**
 	* This function is called to drop plugin tables
-	*  from the GLPI database
+	*  from GLPI database
 	*/
-	public function dropPluginDB(){
+	public function dropPluginDB($die){
 		
 		// Drop plugin tables:
 		$DB = new DB;
@@ -74,7 +79,8 @@ class PluginReservationInfo extends CommonGLPI
 		$result = $DB->query($query);			// for old version compatibility	
 		$table = "glpi_plugin_reservationinfo_config";
 		$query = "DROP TABLE `".$table."`;";
-		$result = $DB->query($query) or die($DB->error());
+		if($die) $result = $DB->query($query) or die($DB->error());
+		else $result = $DB->query($query);
 		
 		return;
 		
@@ -151,8 +157,27 @@ class PluginReservationInfo extends CommonGLPI
 	public function getAddSearchOptions($itemtype)
 	{
 
-		$date = date("Y-m-d H:i:s");
-		$obj = [
+		$now = date("Y-m-d H:i:s");
+
+		$obj = [	
+
+			65536 => [
+				'name' =>  __('Reservation Status', 'ReservationInfo'),
+				'table' => 'glpi_plugin_reservationinfo_config',
+				'field' => 'value',
+				'linkfield' => 'is_active',
+				'joinparams' => [
+					'jointype' => '',
+					'beforejoin' => [
+						'table' => 'glpi_reservationitems',
+						'joinparams' => [
+							'jointype' => 'itemtype_item',
+							
+						],
+					]
+				],
+				'datatype' => 'dropdown'
+			],
 			65537 => [
 				'table' => 'glpi_users',
 				'field' => 'name',
@@ -160,12 +185,12 @@ class PluginReservationInfo extends CommonGLPI
 				'joinparams' => [
 					'jointype' => '',
 					'beforejoin' => [
-						'table' => 'glpi_reservations',						
+						'table' => 'glpi_reservations',
 						'joinparams' => [
 							'jointype' => 'child',
 							'condition' => [
-								'NEWTABLE.begin' => ['<', $date],
-								'NEWTABLE.end' => ['>', $date],
+								'NEWTABLE.begin' => ['<', $now],
+								'NEWTABLE.end' => ['>', $now],
 							],
 							'beforejoin' => [
 								'table' => 'glpi_reservationitems',
@@ -176,7 +201,7 @@ class PluginReservationInfo extends CommonGLPI
 						],
 					],
 				],
-				'datatype' => 'dropdown',
+				'datatype' => 'dropdown'
 			],
 			65538 => [
 				'table' => 'glpi_reservations',
@@ -185,8 +210,8 @@ class PluginReservationInfo extends CommonGLPI
 				'joinparams' => [
 					'jointype' => 'child',
 					'condition' => [
-						'NEWTABLE.begin' => ['<', $date],
-						'NEWTABLE.end' => ['>', $date],
+						'NEWTABLE.begin' => ['<', $now],
+						'NEWTABLE.end' => ['>', $now],
 					],
 					'beforejoin' => [
 						'table' => 'glpi_reservationitems',
@@ -195,7 +220,7 @@ class PluginReservationInfo extends CommonGLPI
 						],
 					]
 				],
-				'datatype' => 'datetime',
+				'datatype' => 'datetime'
 			],
 			65539 => [
 				'table' => 'glpi_reservations',
@@ -204,8 +229,8 @@ class PluginReservationInfo extends CommonGLPI
 				'joinparams' => [
 					'jointype' => 'child',
 					'condition' => [
-						'NEWTABLE.begin' => ['<', $date],
-						'NEWTABLE.end' => ['>', $date],
+						'NEWTABLE.begin' => ['<', $now],
+						'NEWTABLE.end' => ['>', $now],
 					],
 					'beforejoin' => [
 						'table' => 'glpi_reservationitems',
@@ -214,17 +239,17 @@ class PluginReservationInfo extends CommonGLPI
 						],
 					],
 				],
-				'datatype' => 'datetime',
+				'datatype' => 'datetime'
 			],
 			65540 => [
 				'table' => 'glpi_reservations',
 				'field' => 'comment',
-				'name' => __('Reservation Comment', 'ReservationInfo'),	
+				'name' => __('Reservation Comment', 'ReservationInfo'),
 				'joinparams' => [
 					'jointype' => 'child',
 					'condition' => [
-						'NEWTABLE.begin' => ['<', $date],
-						'NEWTABLE.end' => ['>', $date],
+						'NEWTABLE.begin' => ['<', $now],
+						'NEWTABLE.end' => ['>', $now],
 						],
 					'beforejoin' => [
 						'table' => 'glpi_reservationitems',
@@ -233,7 +258,7 @@ class PluginReservationInfo extends CommonGLPI
 						],
 					],
 				],				 
-				'datatype' => 'text',
+				'datatype' => 'text'
 			]			
 
 		];
