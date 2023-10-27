@@ -30,13 +30,13 @@
 
 use Glpi\Plugin\Hooks;
 
-define('PLUGIN_RESERVATIONINFO_VERSION', '1.0.0');
+define('PLUGIN_RESERVATIONINFO_VERSION', '1.0.1');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_RESERVATIONINFO_MIN_GLPI', '10.0.0');
 
 // Maximum GLPI version, exclusive
-define('PLUGIN_RESERVATIONINFO_MAX_GLPI', '10.0.10');
+define('PLUGIN_RESERVATIONINFO_MAX_GLPI', '10.0.11');
 
 if (!defined("PLUGIN_RESERVATIONINFO_DIR")) {
     define("PLUGIN_RESERVATIONINFO_DIR", Plugin::getPhpDir("ReservationInfo"));
