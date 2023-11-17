@@ -1,6 +1,6 @@
 # GLPi Reservation Info Plugin
 
-Download the plugin here : https://github.com/dim00z/ReservationInfo/raw/main/misc/ReservationInfo.zip
+Download the plugin here : https://github.com/d1m007/ReservationInfo/raw/main/misc/ReservationInfo.zip
 
 ## Introduction
 
@@ -15,7 +15,7 @@ The Reservation Info plugin show current reservation status in lists of items. I
 
 ![license](./misc/GPLv3.0.svg)
 
-It is distributed under the GNU GENERAL PUBLIC LICENSE Version 3 - please consult the file called [LICENSE](https://raw.githubusercontent.com/dim00z/ReservationInfo/main/LICENSE) for more details.
+It is distributed under the GNU GENERAL PUBLIC LICENSE Version 3 - please consult the file called [LICENSE](https://raw.githubusercontent.com/d1m007/ReservationInfo/main/LICENSE) for more details.
 
 ## Documentation
 
@@ -34,5 +34,5 @@ Or use git:
 
 ```sh
 cd /my/glpi/deployment/main/directory/plugins
-git clone https://github.com/dim00z/ReservationInfo.git
+git clone https://github.com/d1m007/ReservationInfo.git
 ```
