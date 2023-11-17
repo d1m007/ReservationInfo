@@ -24,7 +24,7 @@
  * -------------------------------------------------------------------------
  * @copyright Copyright (C) 2023 by Dimitri Mestdagh.
  * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
- * @link      https://github.com/dim00z/ReservationInfo
+ * @link      https://github.com/d1m007/ReservationInfo
  * -------------------------------------------------------------------------
  */
 
@@ -51,7 +51,7 @@ function plugin_version_reservationinfo() {
 		'version'        => PLUGIN_RESERVATIONINFO_VERSION,
 		'author'         => 'Dimitri Mestdagh',
 		'license'        => 'GPLv3.0',
-		'homepage'       => 'https://github.com/dim00z/ReservationInfo',
+		'homepage'       => 'https://github.com/d1m007/ReservationInfo',
 		'requirements'   => [
 			'glpi' => [
 				'min' => PLUGIN_RESERVATIONINFO_MIN_GLPI,
