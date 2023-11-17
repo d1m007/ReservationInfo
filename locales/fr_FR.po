@@ -60,8 +60,8 @@ msgid "Save"
 msgstr "Sauvegarder"
 
 #: setup.php
-msgid "This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.8"
-msgstr "Ce plugin nécessite une version de GLPI >= 10.0.0 et GLPI < 10.0.8"
+msgid "This plugin requires GLPI >= 10.0.0 and GLPI < 10.0.11"
+msgstr "Ce plugin nécessite une version de GLPI >= 10.0.0 et GLPI < 10.0.11"
 
 #: setup.php
 msgid "Reservation Info"
