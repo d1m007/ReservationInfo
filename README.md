@@ -21,7 +21,7 @@ It is distributed under the GNU GENERAL PUBLIC LICENSE Version 3 - please consul
 
 This plugin works with all types of bookable items: computers, monitors, software, network devices, devices, printers and phones.
 
-It's compatible with GLPI 10.0.0 => 10.0.7. Translations available in en_EN, fr_FR, es_ES. It's up to you to add more.
+It's compatible with GLPI 10.0.0 => 10.0.10. Translations available in en_EN, fr_FR, es_ES. It's up to you to add more.
 The plugin database table is removed when uninstalling.
 
 ## Installation
