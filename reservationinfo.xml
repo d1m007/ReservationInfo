@@ -11,7 +11,7 @@
       </short>
       <long>
          <en>
-The "Reservation Info" plugin allows to show the current status of bookings in lists of items. It's useful to see which items are already booked at first sight. Works with all types of bookable items: computers, monitors, software, network devices, devices, printers and phones. The plugin is compatible with GLPI 10.0.0 and should be compatible with all versions of GLPI < 10.0.99 (have been tested until 10.0.11). Translations available in en-EN, fr-FR, es-ES. It's up to you to add more.
+The "Reservation Info" plugin allows to show the current status of bookings in lists of items. It's useful to see which items are already booked at first sight. Works with all types of bookable items: computers, monitors, software, network devices, devices, printers and phones. The plugin is compatible with GLPI 10.0.0 and should be compatible with all versions of GLPI until 10.0.99 (have been tested until 10.0.11). Translations available in en-EN, fr-FR, es-ES. It's up to you to add more.
          </en>
          <es>
 El plugin "Información de reservas" permite mostrar el estado actual de las reservas en las listas de elementos. Funciona para todo tipo de elementos reservables: ordenadores, monitores, software, dispositivos de red, dispositivos, impresoras y teléfonos.
